@@ -1,0 +1,14 @@
+node_modules
+dist
+.npm-cache
+.tools
+.DS_Store
+*.local
+vite-dev.log
+vite-dev.err.log
+
+# Raw personal materials. The publishable copies live under public/.
+求职简历（各类方向）
+生活美照
+企业市场情报分析助手（页面截图）
+基于nlp的员工评价一致性分析.docx
