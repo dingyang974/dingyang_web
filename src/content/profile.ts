@@ -21,6 +21,8 @@ export type PortfolioCard = {
   accent: "mint" | "peach" | "sky" | "lemon" | "rose" | "lilac" | "green" | "sand";
 };
 
+const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
 export const profile = {
   name: "丁杨",
   targetRole: "AI产品经理",
@@ -35,7 +37,7 @@ export const profile = {
   floatingTags: ["AI Product", "Data Insight", "RAG / Agent", "Product Sense", "Research Mindset"],
   resume: {
     label: "下载简历 PDF",
-    path: "/resume/ding-yang-resume.pdf",
+    path: publicAsset("resume/ding-yang-resume.pdf"),
   },
   contactEmail: "13317310637@163.com",
 };
@@ -134,15 +136,15 @@ export const portfolioCards: PortfolioCard[] = [
     },
     assets: [
       {
-        src: "/assets/insightops/overview.png",
+        src: publicAsset("assets/insightops/overview.png"),
         alt: "企业市场情报分析助手的市场总览页面截图",
       },
       {
-        src: "/assets/insightops/risk-center.png",
+        src: publicAsset("assets/insightops/risk-center.png"),
         alt: "企业市场情报分析助手的风险事件中心页面截图",
       },
       {
-        src: "/assets/insightops/competitor-radar.png",
+        src: publicAsset("assets/insightops/competitor-radar.png"),
         alt: "企业市场情报分析助手的竞品情报雷达页面截图",
       },
     ],

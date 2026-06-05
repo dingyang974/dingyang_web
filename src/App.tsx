@@ -16,9 +16,11 @@ import {
 import { capabilityGroups, educationPanel, portfolioCards, profile } from "./content/profile";
 import type { PortfolioCard } from "./content/profile";
 
+const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
 const lifePhotos = Array.from(
   { length: 7 },
-  (_, index) => `/assets/profile/life-${String(index + 1).padStart(2, "0")}.jpg`,
+  (_, index) => publicAsset(`assets/profile/life-${String(index + 1).padStart(2, "0")}.jpg`),
 );
 
 const navItems = [
