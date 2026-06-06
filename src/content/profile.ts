@@ -21,6 +21,18 @@ export type PortfolioCard = {
   accent: "mint" | "peach" | "sky" | "lemon" | "rose" | "lilac" | "green" | "sand";
 };
 
+export type InternshipExperience = {
+  id: string;
+  company: string;
+  role: string;
+  time: string;
+  kind: string;
+  summary: string;
+  highlights: string[];
+  tags: string[];
+  accent: "mint" | "sky";
+};
+
 const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
 export const profile = {
@@ -74,14 +86,13 @@ export const educationPanel = {
   tags: ["NLP Research", "Product Thinking", "Data Analysis", "Prototype Design", "IELTS 7.0"],
 };
 
-export const portfolioCards: PortfolioCard[] = [
+export const internshipExperiences: InternshipExperience[] = [
   {
     id: "wondershare",
-    deckTitle: "Internal Data Product",
-    title: "万兴科技",
-    subtitle: "产品策划经理",
-    meta: "2026.01-2026.05",
-    category: "实习经历",
+    company: "万兴科技",
+    role: "产品策划经理",
+    time: "2026.01-2026.05",
+    kind: "Internal Data Product",
     summary:
       "面向企业内部团队分析系统，参与数据型产品策划与迭代。产品服务于管理者，用于追踪项目进展、识别团队风险、挖掘高潜人才。",
     highlights: [
@@ -97,11 +108,10 @@ export const portfolioCards: PortfolioCard[] = [
   },
   {
     id: "chaitin",
-    deckTitle: "AI Security Product",
-    title: "北京长亭科技",
-    subtitle: "AI工具产品岗",
-    meta: "2024.06-2024.09",
-    category: "实习经历",
+    company: "北京长亭科技",
+    role: "AI工具产品岗",
+    time: "2024.06-2024.09",
+    kind: "AI Security Product",
     summary: "参与 0→1 网安垂直领域 AI 智能问答产品建设，辅助网安产品的使用、运营和售后。",
     highlights: [
       "随机抽取用户 query 及点赞/拉踩反馈，重点关注负面案例与 rerun 情况。",
@@ -113,6 +123,9 @@ export const portfolioCards: PortfolioCard[] = [
     tags: ["AI工具产品", "网安场景", "Badcase分析", "评测闭环"],
     accent: "sky",
   },
+];
+
+export const portfolioCards: PortfolioCard[] = [
   {
     id: "insightops",
     deckTitle: "InsightOps",

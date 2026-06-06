@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
   BadgeCheck,
+  Briefcase,
   BrainCircuit,
   DatabaseZap,
   Download,
@@ -13,8 +14,8 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { capabilityGroups, educationPanel, portfolioCards, profile } from "./content/profile";
-import type { PortfolioCard } from "./content/profile";
+import { capabilityGroups, educationPanel, internshipExperiences, portfolioCards, profile } from "./content/profile";
+import type { InternshipExperience, PortfolioCard } from "./content/profile";
 
 const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
@@ -25,6 +26,7 @@ const lifePhotos = Array.from(
 
 const navItems = [
   { href: "#top", label: "首页" },
+  { href: "#internship", label: "实习" },
   { href: "#cards", label: "经历牌" },
   { href: "#capability", label: "能力" },
   { href: "#contact", label: "联系" },
@@ -89,6 +91,7 @@ function App() {
     <main>
       <SiteHeader />
       <HeroSection />
+      <InternshipSection />
       <TarotSection onSelect={setSelectedCard} />
       <CapabilitySection />
       <ContactSection />
@@ -218,6 +221,63 @@ function EducationCard() {
   );
 }
 
+function InternshipSection() {
+  return (
+    <section id="internship" className="section internship-section" aria-labelledby="internship-title">
+      <div className="section-heading internship-heading">
+        <p className="eyebrow">
+          <Briefcase size={16} />
+          Internship
+        </p>
+        <h2 id="internship-title">The Practitioner</h2>
+        <p>真实业务场景中的 AI 产品、数据产品与模型评测经验。</p>
+      </div>
+      <div className="internship-grid">
+        {internshipExperiences.map((experience, index) => (
+          <InternshipCard experience={experience} index={index} key={experience.id} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function InternshipCard({ experience, index }: { experience: InternshipExperience; index: number }) {
+  return (
+    <article className={`internship-card internship-${experience.accent}`}>
+      <span className="internship-ribbon" aria-hidden="true" />
+      <div className="internship-top">
+        <div>
+          <span className="internship-index">{String(index + 1).padStart(2, "0")}</span>
+          <p>{experience.kind}</p>
+          <h3>{experience.company}</h3>
+        </div>
+        <div className="internship-meta">
+          <span>{experience.role}</span>
+          <strong>{experience.time}</strong>
+        </div>
+      </div>
+      <p className="internship-summary">
+        <EmphasisText text={experience.summary} />
+      </p>
+      <div className="internship-highlights">
+        {experience.highlights.map((highlight, highlightIndex) => (
+          <p key={highlight}>
+            <span>{String(highlightIndex + 1).padStart(2, "0")}</span>
+            <em>
+              <EmphasisText text={highlight} />
+            </em>
+          </p>
+        ))}
+      </div>
+      <div className="internship-tags">
+        {experience.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+    </article>
+  );
+}
+
 function TarotSection({ onSelect }: { onSelect: (card: PortfolioCard) => void }) {
   return (
     <section id="cards" className="section tarot-section" aria-labelledby="cards-title">
@@ -227,7 +287,7 @@ function TarotSection({ onSelect }: { onSelect: (card: PortfolioCard) => void })
           Experience Deck
         </p>
         <h2 id="cards-title">The Explorer</h2>
-        <p className="deck-hint">Click cards to explore my PM DNA</p>
+        <p className="deck-hint">Click a card below to explore my PM DNA</p>
       </div>
       <div className="tarot-workspace">
         <div className="tarot-deck" aria-label="经历牌组">
